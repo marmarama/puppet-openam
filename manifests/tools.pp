@@ -40,7 +40,7 @@ class openam::tools {
     cwd         => "${openam::config_dir}/cli",
     creates     => "${openam::config_dir}/cli${openam::deployment_uri}",
     environment => "JAVA_HOME=${openam::java_home}",
-    command     => "${openam::config_dir}/cli/setup -p ${openam::config_dir} -d ${openam::log_dir}/debug -l ${openam::log_dir}/logs",
+    command     => "${openam::config_dir}/cli/setup -p ${openam::config_dir} -d ${openam::log_dir}/debug -l ${openam::log_dir}/log",
     require     => Exec["deploy ssoadm"],
   }
 
