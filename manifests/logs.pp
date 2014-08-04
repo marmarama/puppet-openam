@@ -22,7 +22,7 @@ class openam::logs {
     mode    => 700,
   }
 
-  # Symlink $OPENAM_CONFIG_HOME/$OPENAM_URI/{debug,logs,stats} to the
+  # Symlink $OPENAM_CONFIG_HOME/$OPENAM_URI/{debug,log,stats} to the
   # configured log directory, usually this would be /var/log/openam or
   # another directory on a partition with sufficient free disk space.
 
