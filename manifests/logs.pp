@@ -13,7 +13,7 @@
 class openam::logs {
 
   file { [ "${openam::log_dir}",
-           "${openam::log_dir}/logs",
+           "${openam::log_dir}/log",
            "${openam::log_dir}/debug",
            "${openam::log_dir}/stats" ]:
     ensure  => directory,
@@ -26,10 +26,10 @@ class openam::logs {
   # configured log directory, usually this would be /var/log/openam or
   # another directory on a partition with sufficient free disk space.
 
-  file { "${openam::config_dir}${openam::deployment_uri}/logs":
+  file { "${openam::config_dir}${openam::deployment_uri}/log":
     ensure    => link,
-    target    => "${openam::log_dir}/logs",
-    require   => File["${openam::log_dir}/logs"],
+    target    => "${openam::log_dir}/log",
+    require   => File["${openam::log_dir}/log"],
     force     => true,
   }
 
