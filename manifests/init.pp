@@ -30,7 +30,6 @@ class openam(
   $server_protocol    = hiera('openam::server_protocol', 'http'),
   $server_host        = $fqdn,
   $server_port        = hiera('openam::server_port', '8080'),
-  $server_url         = "${openam::server_protocol}://${openam::server_host}:${openam::server_port}",
   $amadmin_pw         = hiera('openam::amadmin_pw'),
   $amldapuser_pw      = hiera('openam::amldapuser_pw'),
   $encryption_key     = hiera('openam::encryption_key'),
