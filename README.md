@@ -14,6 +14,7 @@ The following parameters controls the initial configuration of OpenAM:
   * `version`: The OpenAM version number
   * `java_home`: Java home
   * `tomcat_user`: The POSIX user running Tomcat
+  * `tomcat_service`: The name of the service starting the OpenAM Tomcat instance
   * `tomcat_home`: The home directory for Tomcat
   * `config_dir`: The OpenAM configuration directory, e.g. `/opt/openam`
   * `log_dir`: The destination directory for OpenAM logs, e.g. `/var/log`

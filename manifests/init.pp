@@ -15,6 +15,7 @@ class openam(
   $version            = hiera('openam::version'),
   $java_home          = hiera('openam::java_home'),
   $tomcat_user        = hiera('openam::tomcat_user'),
+  $tomcat_service     = hiera('openam::tomcat_service', 'tomcat-openam'),
   $tomcat_home        = hiera('openam::tomcat_home'),
   $config_dir         = hiera('openam::config_dir', '/opt/openam'),
   $log_dir            = hiera('openam::log_dir', '/var/log/openam'),
