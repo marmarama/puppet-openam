@@ -27,7 +27,20 @@ class openam(
   $master             = hiera('openam::master'),
 
   $server_protocol    = hiera('openam::server_protocol', 'http'),
+  # TODO erstatt $fqdn med en form for Amazon EC vennlig $openam_server_host_fact og fjern denne linja.
   $server_host        = $fqdn,
+  #if $my_new_fact {
+  #  $server_host=$my_new_fact
+  #} else {
+  #  $server_host=$fqdn
+  #},
+  #$server_host = $my_new_fact ? {
+  #  $my_new_fact       => $my_new_fact,
+  #  default            => $fqdn,
+  #},
+  #$server_host        = hiera($my_new_fact, $fqdn),
+  #$server_host        = scope($my_new_fact, $fqdn),
+  #$server_host        = extlookup($my_new_fact, $fqdn),
   $server_port        = hiera('openam::server_port', '8080'),
   $server_url         = "${openam::server_protocol}://${openam::server_host}:${openam::server_port}",
   $amadmin_pw         = hiera('openam::amadmin_pw'),
