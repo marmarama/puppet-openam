@@ -1,11 +1,11 @@
-SERVER_URL=<%= server_url %>
+SERVER_URL=<%= @server_url %>
 DEPLOYMENT_URI=<%= @deployment_uri %>
 BASE_DIR=<%= @config_dir %>
 locale=<%= @locale %>
 PLATFORM_LOCALE=<%= @locale %>
 AM_ENC_KEY=<%= @encryption_key %>
-ADMIN_PWD=<%= @amadmin %>
-AMLDAPUSERPASSWD=<%= @amldapuser %>
+ADMIN_PWD=<%= @amadmin_pw %>
+AMLDAPUSERPASSWD=<%= @amldapuser_pw %>
 COOKIE_DOMAIN=<%= @cookie_domain %>
 
 DATA_STORE=dirServer
@@ -26,7 +26,7 @@ USERSTORE_SUFFIX=<%= @userstore_suffix %>
 USERSTORE_MGRDN=<%= @userstore_binddn %>
 USERSTORE_PASSWD=<%= @userstore_bindpw %>
 
-<% if @master == @fqdn %>
+<% if @master == @server_host %>
 LB_SITE_NAME=<%= @environment %>
 LB_PRIMARY_URL=<%= @site_url %>
 <% else %>
