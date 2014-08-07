@@ -12,8 +12,6 @@
 #
 
 class openam::config {
-  $server_url = "${openam::server_protocol}://${openam::server_host}:${openam::server_port}"
-
   package { "perl-Crypt-SSLeay": ensure => installed }
   package { "perl-libwww-perl": ensure => installed }
   

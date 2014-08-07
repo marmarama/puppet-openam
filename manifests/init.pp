@@ -28,19 +28,18 @@ class openam(
   $master             = hiera('openam::master'),
 
   $server_protocol    = hiera('openam::server_protocol', 'http'),
-  $server_host        = $fqdn,
   $server_port        = hiera('openam::server_port', '8080'),
   $amadmin_pw         = hiera('openam::amadmin_pw'),
   $amldapuser_pw      = hiera('openam::amldapuser_pw'),
   $encryption_key     = hiera('openam::encryption_key'),
 
-  $userstore_host         = hiera('openam::userstore_host', $openam::server_host),
+  $userstore_host         = hiera('openam::userstore_host', 'localhost'),
   $userstore_ldap_port    = hiera('openam::userstore_ldap_port', '1389'),
   $userstore_suffix       = hiera('openam::userstore_suffix'),
   $userstore_binddn       = hiera('openam::userstore_binddn'),
   $userstore_bindpw       = hiera('openam::userstore_bindpw'),
 
-  $configstore_host       = hiera('openam::configstore_host', $openam::server_host),
+  $configstore_host       = hiera('openam::configstore_host', 'localhost'),
   $configstore_ldap_port  = hiera('openam::configstore_ldap_port', '1389'),
   $configstore_admin_port = hiera('openam::configstore_admin_port', '4444'),
   $configstore_jmx_port   = hiera('openam::configstore_jmx_port', '1689'),
@@ -49,6 +48,13 @@ class openam(
   $configstore_bindpw     = hiera('openam::configstore_bindpw'),
 
 ) {
+  $server_host = $sso_server_hostname ? {
+    undef   => $fqdn,
+    nil     => $fqdn,
+    default => $sso_server_hostname,
+  }
+
+  $server_url = "${openam::server_protocol}://${openam::server_host}:${openam::server_port}"
 
   include openam::deploy
   include openam::config

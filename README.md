@@ -41,3 +41,9 @@ The following parameters controls the initial configuration of OpenAM:
   * `configstore_suffix`: The root suffix for the OpenAM configuration store, e.g. `dc=example,dc=com`
   * `configstore_binddn`: The LDAP user for the OpenAM configuration store, e.g. `cn=Directory Manager`
   * `configstore_bindpw`: The password for the user specified in `configstore_binddn`
+
+## Amazon EC2 configuration
+The module determines the OpenAM server hostname from a fact called `sso_server_hostname` in order to circumvent EC2
+instances resolving the `fqdn` to the internal EC2 hostname ( ip-xyz-xyz-xyz-xyz.region.compute.internal ). If this fact
+is not provided the OpenAM server hostname will use `fqdn` which is the default case.
+
