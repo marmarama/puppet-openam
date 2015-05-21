@@ -1,34 +1,38 @@
-SERVER_URL=<%= @server_url %>
-DEPLOYMENT_URI=<%= @deployment_uri %>
-BASE_DIR=<%= @config_dir %>
-locale=<%= @locale %>
-PLATFORM_LOCALE=<%= @locale %>
-AM_ENC_KEY=<%= @encryption_key %>
-ADMIN_PWD=<%= @amadmin_pw %>
-AMLDAPUSERPASSWD=<%= @amldapuser_pw %>
-COOKIE_DOMAIN=<%= @cookie_domain %>
+SERVER_URL=<%= scope.lookupvar('openam::server_url') %>
+DEPLOYMENT_URI=<%= scope.lookupvar('openam::deployment_uri') %>
+BASE_DIR=<%= scope.lookupvar('openam::config_dir') %>
+locale=<%= scope.lookupvar('openam::locale') %>
+PLATFORM_LOCALE=<%= scope.lookupvar('openam::locale') %>
+AM_ENC_KEY=<%= scope.lookupvar('openam::encryption_key') %>
+ADMIN_PWD=<%= scope.lookupvar('openam::amadmin_pw') %>
+ADMIN_CONFIRM_PWD=<%= scope.lookupvar('openam::amadmin_pw') %>
+AMLDAPUSERPASSWD=<%= scope.lookupvar('openam::amldapuser_pw') %>
+AMLDAPUSERPASSWD_CONFIRM=<%= scope.lookupvar('openam::amldapuser_pw') %>
+COOKIE_DOMAIN=<%= scope.lookupvar('openam::cookie_domain') %>
 
-DATA_STORE=dirServer
+DATA_STORE=<%= scope.lookupvar('openam::datastore') %>
 DIRECTORY_SSL=SIMPLE
-DIRECTORY_SERVER=<%= @configstore_host %>
-DIRECTORY_PORT=<%= @configstore_ldap_port %>
-DIRECTORY_ADMIN_PORT=<%= @configstore_admin_port %>
-DIRECTORY_JMX_PORT=<%= @configstore_jmx_port %>
-ROOT_SUFFIX=<%= @configstore_suffix %>
-DS_DIRMGRDN=<%= @configstore_binddn %>
-DS_DIRMGRPASSWD=<%= @configstore_bindpw %>
+DIRECTORY_SERVER=<%= scope.lookupvar('openam::configstore_host') %>
+DIRECTORY_PORT=<%= scope.lookupvar('openam::configstore_ldap_port') %>
+DIRECTORY_ADMIN_PORT=<%= scope.lookupvar('openam::configstore_admin_port') %>
+DIRECTORY_JMX_PORT=<%= scope.lookupvar('openam::configstore_jmx_port') %>
+ROOT_SUFFIX=<%= scope.lookupvar('openam::configstore_suffix') %>
+DS_DIRMGRDN=<%= scope.lookupvar('openam::configstore_binddn') %>
+DS_DIRMGRPASSWD=<%= scope.lookupvar('openam::configstore_bindpw') %>
 
 USERSTORE_TYPE=LDAPv3ForOpenDS
 USERSTORE_SSL=SIMPLE
-USERSTORE_HOST=<%= @userstore_host %>
-USERSTORE_PORT=<%= @userstore_ldap_port %>
-USERSTORE_SUFFIX=<%= @userstore_suffix %>
-USERSTORE_MGRDN=<%= @userstore_binddn %>
-USERSTORE_PASSWD=<%= @userstore_bindpw %>
+USERSTORE_HOST=<%= scope.lookupvar('openam::userstore_host') %>
+USERSTORE_PORT=<%= scope.lookupvar('openam::userstore_ldap_port') %>
+USERSTORE_SUFFIX=<%= scope.lookupvar('openam::userstore_suffix') %>
+USERSTORE_MGRDN=<%= scope.lookupvar('openam::userstore_binddn') %>
+USERSTORE_PASSWD=<%= scope.lookupvar('openam::userstore_bindpw') %>
 
-<% if @master == @server_host %>
-LB_SITE_NAME=<%= @environment %>
-LB_PRIMARY_URL=<%= @site_url %>
+acceptLicense=true
+
+<% if scope.lookupvar('openam::master') == scope.lookupvar('openam::server_host') %>
+LB_SITE_NAME=<%= scope.lookupvar('openam::environment') %>
+LB_PRIMARY_URL=<%= scope.lookupvar('openam::site_url') %>
 <% else %>
-existingserverid=<%= @master %>
+existingserverid=<%= scope.lookupvar('openam::master') %>
 <% end %>
