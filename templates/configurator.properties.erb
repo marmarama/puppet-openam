@@ -34,5 +34,12 @@ acceptLicense=true
 LB_SITE_NAME=<%= scope.lookupvar('openam::environment') %>
 LB_PRIMARY_URL=<%= scope.lookupvar('openam::site_url') %>
 <% else %>
-existingserverid=<%= scope.lookupvar('openam::master') %>
+LB_SITE_NAME=<%= scope.lookupvar('openam::environment') %>
+LB_PRIMARY_URL=<%= scope.lookupvar('openam::site_url') %>
+existingserverid=<%= scope.lookupvar('openam::master_url') %>
+DS_EMB_REPL_FLAG=embReplFlag
+DS_EMB_REPL_REPLPORT1=50899
+DS_EMB_REPL_HOST2=<%= scope.lookupvar('openam::master') %>
+DS_EMB_REPL_ADMINPORT2=4444
+DS_EMB_REPL_REPLPORT2=50899
 <% end %>

@@ -47,6 +47,9 @@ class openam(
   $configstore_binddn     = hiera('openam::configstore_binddn'),
   $configstore_bindpw     = hiera('openam::configstore_bindpw'),
 
+  $datastore   = 'embedded',
+  $environment = hiera('openam::environment'),
+  $master_url  = hiera('openam::master_url')
 ) {
   $server_host = $sso_server_hostname ? {
     undef   => $fqdn,
@@ -56,12 +59,10 @@ class openam(
 
   $server_url = "${openam::server_protocol}://${openam::server_host}:${openam::server_port}"
 
-  include openam::deploy
   include openam::config
   include openam::logs
   include openam::tools
 
-  Class['openam::deploy']    -> Class['openam::config']
   Class['openam::config']    -> Class['openam::logs']
   Class['openam::logs']      -> Class['openam::tools']
 }

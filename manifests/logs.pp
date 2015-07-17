@@ -19,7 +19,7 @@ class openam::logs {
     ensure  => directory,
     owner   => "${openam::tomcat_user}",
     group   => "${openam::tomcat_user}",
-    mode    => 700,
+    mode    => "0700",
   }
 
   # Symlink $OPENAM_CONFIG_HOME/$OPENAM_URI/{debug,log,stats} to the

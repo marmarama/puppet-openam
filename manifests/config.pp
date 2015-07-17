@@ -19,21 +19,21 @@ class openam::config {
     ensure => directory,
     owner  => "${openam::tomcat_user}",
     group  => "${openam::tomcat_user}",
-    mode   => 755,
+    mode   => "0755",
   }
  
   # Contains passwords, thus (temporarily) stored in /dev/shm
   file { "/dev/shm/configurator.properties":
     owner   => root,
     group   => root,
-    mode    => 600,
+    mode    => "0600",
     content => template("${module_name}/configurator.properties.erb"),
   }
 
   file { "/dev/shm/configurator.pl":
     owner   => root,
     group   => root,
-    mode    => 700,
+    mode    => "0700",
     require => File["/dev/shm/configurator.properties"], 
     source  => "puppet:///modules/${module_name}/configurator.pl",
   }
