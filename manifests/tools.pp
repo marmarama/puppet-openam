@@ -22,15 +22,8 @@ class openam::tools {
     require   => Exec["configure openam"],
   }
 
-  file { "/var/tmp/SSOAdminTools_${openam::version}.zip":
-    ensure => present,
-    owner  => "${openam::tomcat_user}",
-    group  => "${openam::tomcat_user}",
-    source => "puppet:///modules/${module_name}/SSOAdminTools_${openam::version}.zip",
-  }
-
   exec { "deploy ssoadm":
-    cwd     => '/var/tmp',
+    cwd     => '/var/lib/openam',
     creates => "${openam::config_dir}/cli/setup",
     require => [ Exec["configure openam"], File["${openam::config_dir}/cli"], Package['unzip'] ],
     command => "/usr/bin/unzip SSOAdminTools_${openam::version}.zip -d ${openam::config_dir}/cli/",
