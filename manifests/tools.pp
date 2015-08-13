@@ -26,7 +26,7 @@ class openam::tools {
     cwd     => '/var/lib/openam',
     creates => "${openam::config_dir}/cli/setup",
     require => [ Exec["configure openam"], File["${openam::config_dir}/cli"], Package['unzip'] ],
-    command => "/usr/bin/unzip SSOAdminTools_${openam::version}.zip -d ${openam::config_dir}/cli/",
+    command => "/usr/bin/unzip SSOAdminTools-${openam::version}.zip -d ${openam::config_dir}/cli/",
   }
 
   exec { "configure ssoadm":
