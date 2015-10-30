@@ -12,14 +12,14 @@
 #
 class openam::logs {
 
-  file { [ "${openam::log_dir}",
-           "${openam::log_dir}/log",
-           "${openam::log_dir}/debug",
-           "${openam::log_dir}/stats" ]:
-    ensure  => directory,
-    owner   => "${openam::tomcat_user}",
-    group   => "${openam::tomcat_user}",
-    mode    => "0700",
+  file { [$openam::log_dir,
+    "${openam::log_dir}/log",
+    "${openam::log_dir}/debug",
+    "${openam::log_dir}/stats" ]:
+    ensure => directory,
+    owner  => $openam::tomcat_user,
+    group  => $openam::tomcat_user,
+    mode   => '0700',
   }
 
   # Symlink $OPENAM_CONFIG_HOME/$OPENAM_URI/{debug,log,stats} to the
@@ -27,23 +27,23 @@ class openam::logs {
   # another directory on a partition with sufficient free disk space.
 
   file { "${openam::config_dir}${openam::deployment_uri}/log":
-    ensure    => link,
-    target    => "${openam::log_dir}/log",
-    require   => File["${openam::log_dir}/log"],
-    force     => true,
+    ensure  => link,
+    target  => "${openam::log_dir}/log",
+    require => File["${openam::log_dir}/log"],
+    force   => true,
   }
 
   file { "${openam::config_dir}${openam::deployment_uri}/debug":
-    ensure    => link,
-    target    => "${openam::log_dir}/debug",
-    require   => File["${openam::log_dir}/debug"],
-    force     => true,
+    ensure  => link,
+    target  => "${openam::log_dir}/debug",
+    require => File["${openam::log_dir}/debug"],
+    force   => true,
   }
 
   file { "${openam::config_dir}${openam::deployment_uri}/stats":
-    ensure    => link,
-    target    => "${openam::log_dir}/stats",
-    require   => File["${openam::log_dir}/stats"],
-    force     => true,
+    ensure  => link,
+    target  => "${openam::log_dir}/stats",
+    require => File["${openam::log_dir}/stats"],
+    force   => true,
   }
 }

@@ -51,10 +51,10 @@ class openam(
   $environment = hiera('openam::environment'),
   $master_url  = hiera('openam::master_url')
 ) {
-  $server_host = $sso_server_hostname ? {
-    undef   => $fqdn,
-    nil     => $fqdn,
-    default => $sso_server_hostname,
+  $server_host = $::sso_server_hostname ? {
+    undef   => $::fqdn,
+    nil     => $::fqdn,
+    default => $::sso_server_hostname,
   }
 
   $server_url = "${openam::server_protocol}://${openam::server_host}:${openam::server_port}"
