@@ -16,7 +16,7 @@ class openam::logs {
     "${openam::log_dir}/log",
     "${openam::log_dir}/debug",
     "${openam::log_dir}/stats",
-    "${openam::config_dir}/${openam::deployment_uri}" ]:
+    "${openam::config_dir}${openam::deployment_uri}" ]:
     ensure => directory,
     owner  => $openam::tomcat_user,
     group  => $openam::tomcat_user,
