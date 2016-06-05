@@ -29,21 +29,21 @@ class openam::logs {
   file { "${openam::config_dir}${openam::deployment_uri}/log":
     ensure  => link,
     target  => "${openam::log_dir}/log",
-    require => File["${openam::log_dir}/log"],
+    require => [File["${openam::log_dir}/log"],File["${openam::config_dir}"]],
     force   => true,
   }
 
   file { "${openam::config_dir}${openam::deployment_uri}/debug":
     ensure  => link,
     target  => "${openam::log_dir}/debug",
-    require => File["${openam::log_dir}/debug"],
+    require => [File["${openam::log_dir}/debug"],File["${openam::config_dir}"]],
     force   => true,
   }
 
   file { "${openam::config_dir}${openam::deployment_uri}/stats":
     ensure  => link,
     target  => "${openam::log_dir}/stats",
-    require => File["${openam::log_dir}/stats"],
+    require => [File["${openam::log_dir}/stats"],File["${openam::config_dir}"]],
     force   => true,
   }
 }
