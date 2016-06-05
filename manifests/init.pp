@@ -19,6 +19,7 @@ class openam(
   $tomcat_home        = hiera('openam::tomcat_home'),
   $config_dir         = hiera('openam::config_dir', '/opt/openam'),
   $log_dir            = hiera('openam::log_dir', '/var/log/openam'),
+  $bootstrap_dir      = hiera('openam::bootstrap_dir', "/tmp/openam-${sha1(sprintf("%s", fqdn_rand(9999999999999999999999999)))}"),
   $locale             = hiera('openam::locale', 'en_US'),
   $ssoadm             = hiera('openam::ssoadm', '/usr/local/bin/ssoadm'),
 
