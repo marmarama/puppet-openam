@@ -21,7 +21,7 @@ class openam::logs {
     owner  => $openam::tomcat_user,
     group  => $openam::tomcat_user,
     mode   => '0700',
-  }
+  } ->
 
   # Symlink $OPENAM_CONFIG_HOME/$OPENAM_URI/{debug,log,stats} to the
   # configured log directory, usually this would be /var/log/openam or
@@ -30,21 +30,18 @@ class openam::logs {
   file { "${openam::config_dir}${openam::deployment_uri}/log":
     ensure  => link,
     target  => "${openam::log_dir}/log",
-    require => File["${openam::log_dir}/log"],
     force   => true,
-  }
+  } ->
 
   file { "${openam::config_dir}${openam::deployment_uri}/debug":
     ensure  => link,
     target  => "${openam::log_dir}/debug",
-    require => File["${openam::log_dir}/debug"],
     force   => true,
-  }
+  } ->
 
   file { "${openam::config_dir}${openam::deployment_uri}/stats":
     ensure  => link,
     target  => "${openam::log_dir}/stats",
-    require => File["${openam::log_dir}/stats"],
     force   => true,
   }
 }
