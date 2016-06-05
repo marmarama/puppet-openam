@@ -15,7 +15,8 @@ class openam::logs {
   file { [$openam::log_dir,
     "${openam::log_dir}/log",
     "${openam::log_dir}/debug",
-    "${openam::log_dir}/stats" ]:
+    "${openam::log_dir}/stats",
+    "${openam::config_dir}/${openam::deployment_uri}" ]:
     ensure => directory,
     owner  => $openam::tomcat_user,
     group  => $openam::tomcat_user,
@@ -29,21 +30,21 @@ class openam::logs {
   file { "${openam::config_dir}${openam::deployment_uri}/log":
     ensure  => link,
     target  => "${openam::log_dir}/log",
-    require => [File["${openam::log_dir}/log"],File["${openam::config_dir}"]],
+    require => File["${openam::log_dir}/log"],
     force   => true,
   }
 
   file { "${openam::config_dir}${openam::deployment_uri}/debug":
     ensure  => link,
     target  => "${openam::log_dir}/debug",
-    require => [File["${openam::log_dir}/debug"],File["${openam::config_dir}"]],
+    require => File["${openam::log_dir}/debug"],
     force   => true,
   }
 
   file { "${openam::config_dir}${openam::deployment_uri}/stats":
     ensure  => link,
     target  => "${openam::log_dir}/stats",
-    require => [File["${openam::log_dir}/stats"],File["${openam::config_dir}"]],
+    require => File["${openam::log_dir}/stats"],
     force   => true,
   }
 }
