@@ -50,7 +50,7 @@ class openam(
 
   $datastore   = 'embedded',
   $environment = hiera('openam::environment'),
-  $master_url  = hiera('openam::master_url')
+  $master_url  = hiera('openam::master_url'),
   $server_host = hiera('openam::server_host', undef)
 
 ) {
